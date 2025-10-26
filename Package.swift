@@ -10,6 +10,8 @@ let package = Package(
     .executable(name: "swiftgen", targets: ["SwiftGen"]),
     .library(name: "SwiftGenCLI", targets: ["SwiftGenCLI"]),
     .library(name: "SwiftGenKit", targets: ["SwiftGenKit"]),
+    .library(name: "StoryboardCore", targets: ["StoryboardCore"]),
+    .library(name: "StoryboardUI", targets: ["StoryboardUI"]),
   ],
   dependencies: [
     .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.1.3"),
@@ -42,6 +44,10 @@ let package = Package(
       "Stencil",
       "Yams"
     ]),
+    .target(name: "StoryboardCore", dependencies: []),
+    .target(name: "StoryboardUI", dependencies: [
+      "StoryboardCore"
+    ]),
     .testTarget(name: "SwiftGenKitTests", dependencies: [
       "SwiftGenKit",
       "TestUtils"
@@ -54,6 +60,9 @@ let package = Package(
       "StencilSwiftKit",
       "SwiftGenKit",
       "TestUtils"
+    ]),
+    .testTarget(name: "StoryboardCoreTests", dependencies: [
+      "StoryboardCore"
     ]),
     .target(name: "TestUtils", dependencies: [
       "Difference",
